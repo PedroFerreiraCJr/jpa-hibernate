@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+	<persistence-unit name="local-pu" transaction-type="RESOURCE_LOCAL">
+		<description>
+            Simple hibernate strategy example
+        </description>
+
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+ 		
+		<!-- mappedsuperclass inheritance strategy classes
+		<class>br.com.dotofcodex.jpa_hibernate.entity.mapped_superclass.Publication</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.mapped_superclass.Book</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.mapped_superclass.BlogPost</class>
+		-->
+		
+		<!-- table per class inheritance strategy classes
+		<class>br.com.dotofcodex.jpa_hibernate.entity.table_class.Author</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.table_class.Publication</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.table_class.Book</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.table_class.BlogPost</class>
+ 		-->
+ 		
+ 		<!-- single table inheritance strategy classes
+ 		<class>br.com.dotofcodex.jpa_hibernate.entity.single_table.Author</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.single_table.Publication</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.single_table.Book</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.single_table.BlogPost</class>
+	 	-->
+	 	
+	 	<!-- joined table inheritance strategy classes -->
+ 		<class>br.com.dotofcodex.jpa_hibernate.entity.joined.Author</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.joined.Publication</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.joined.Book</class>
+		<class>br.com.dotofcodex.jpa_hibernate.entity.joined.BlogPost</class>
+	 	
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
+		<properties>
+			<!-- basic configuration -->
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/hibernate?useSSL=false" />
+			<property name="javax.persistence.jdbc.user"
+				value="root" />
+			<property name="javax.persistence.jdbc.password"
+				value="root" />
+
+			<!-- hibernate configuration -->
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.show_sql"
+				value="true" />
+			<property name="hibernate.format_sql"
+				value="true" />
+			<property name="hibernate.use_sql_comments"
+				value="false" />
+			<property name="hibernate.hbm2ddl.auto"
+				value="none" />
+
+			<!-- C3P0 connection pool configuration -->
+			<property name="hibernate.connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.max_size"
+				value="100" />
+			<property name="hibernate.c3p0.min_size"
+				value="0" />
+			<property name="hibernate.c3p0.acquire_increment"
+				value="1" />
+			<property name="hibernate.c3p0.idle_test_period"
+				value="300" />
+			<property name="hibernate.c3p0.max_statements"
+				value="0" />
+			<property name="hibernate.c3p0.timeout"
+				value="100" />
+		</properties>
+
+	</persistence-unit>
+
+</persistence>

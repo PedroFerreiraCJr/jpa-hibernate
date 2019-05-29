@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.dotofcodex</groupId>
+	<artifactId>jpa-hibernate</artifactId>
+	<version>0.0.1</version>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.name>jpa-hib-example</project.name>
+		<source.version>1.8</source.version>
+		<java.version>1.8</java.version>
+		<jpa-api.version>2.2</jpa-api.version>
+		<!-- new version of hibernate
+		<hibernate-core.version>6.0.0.Alpha2</hibernate-core.version>
+		<hibernate-c3p0.version>6.0.0.Alpha2</hibernate-c3p0.version>
+	 	-->
+	 	<hibernate-core.version>5.4.1.Final</hibernate-core.version>
+		<hibernate-c3p0.version>5.4.1.Final</hibernate-c3p0.version>
+		<hibernate-entitymanager.version>5.4.1.Final</hibernate-entitymanager.version>
+		<mysql.version>8.0.16</mysql.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>${jpa-api.version}</version>
+		</dependency>
+		<!-- new version of hibernate
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate-c3p0.version}</version>
+		</dependency>
+	 	-->
+	 	<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate-core.version}</version>
+		</dependency>
+		<!-- unnecessary dependency for hibernate 6+ -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>${hibernate-entitymanager.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>${hibernate-c3p0.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>${project.name}</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${source.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>br.com.dotofcodex.jpa_hibernate.Main</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>
